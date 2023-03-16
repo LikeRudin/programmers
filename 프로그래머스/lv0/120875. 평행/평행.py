@@ -40,13 +40,13 @@ round로 반올림을 해주자..
 
   
 """
-def solution(dots):
-    answer = 0
-    for i in range(1, 4):
-        if (dots[0][0] - dots[i][0]) / (dots[0][1] - dots[i][1]) == (dots[round(((i-2)*(i-3) + 2) / 2)][0] - dots[round((-(i-1)*(i-2) + 6) /2)][0]) / (dots[round(((i-2)*(i-3) + 2) / 2)][1] -dots[round((-(i-1)*(i-2) + 6) /2 )][1]):
-            answer = 1
+# def solution(dots):
+#     answer = 0
+#     for i in range(1, 4):
+#         if (dots[0][0] - dots[i][0]) / (dots[0][1] - dots[i][1]) == (dots[round(((i-2)*(i-3) + 2) / 2)][0] - dots[round((-(i-1)*(i-2) + 6) /2)][0]) / (dots[round(((i-2)*(i-3) + 2) / 2)][1] -dots[round((-(i-1)*(i-2) + 6) /2 )][1]):
+#             answer = 1
         
-    return answer
+#     return answer
 
 # 위의 함수는 테스트케이스를 통과했다.
 # 이제 한줄로 줄이자.
