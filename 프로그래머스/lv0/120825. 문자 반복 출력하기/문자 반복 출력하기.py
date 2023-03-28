@@ -1,0 +1,1 @@
+solution = lambda x, y: "".join([i * y for i in x])
