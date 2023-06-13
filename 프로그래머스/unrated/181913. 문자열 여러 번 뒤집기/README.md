@@ -1,10 +1,10 @@
 # [unrated] 문자열 여러 번 뒤집기 - 181913 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181913?language=javascript) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181913) 
 
 ### 성능 요약
 
-메모리: 35 MB, 시간: 16.56 ms
+메모리: 35 MB, 시간: 8.62 ms
 
 ### 구분
 
