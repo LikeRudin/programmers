@@ -23,6 +23,13 @@ const solution = (today, terms, privacies ) => {
     
     console.log(`dateArray: ${dateArray}`)
     
+    /*
+    *todayArray랑 dateArray 의 값들을 각각 정수로 변경
+    * (year * 12 + month) * 28
+    * todays > expirationDateArray[i] 이면
+    * answer.push(i + 1)
+    */
+    
     const expirationDateArray = dateArray.map(item => {
         let [year, month, day, term] = item;
         
@@ -46,10 +53,9 @@ const solution = (today, terms, privacies ) => {
     console.log(expirationDateArray);
     
     const [tYear, tMonth,tDay] = todayArray;
-    const standard =(tYear * 12 + tMonth) * 28 + tDay;
-    console.log(standard)
+    const todays =(tYear * 12 + tMonth) * 28 + tDay;
     for (let i = 0; i < expirationDateArray.length; i++){
-        if (standard > expirationDateArray[i]){
+        if (todays > expirationDateArray[i]){
         answer.push(i + 1);}
         
     }
