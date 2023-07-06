@@ -1,64 +1,35 @@
-const solution = (today, terms, privacies ) => {
+const solution = (today, term, privacies) => {
+    const termsObj = {};
+   
+    term.forEach(item => {
+        const [term, duration] = item.split(" ");
+        termsObj[term] = Number(duration);
+    });
+    
+    const expirationDates = privacies
+    .map(item=>item.split(" "))
+    .map(arr =>{
+        const [date, term] = arr;
+        const [year, month, day] = date.split(".").map(num => Number(num));
+        const days = (year * 12 + month + termsObj[term]) * 28 + day -1;
+        return days;
+    });
+    console.log(`expirationDates: ${expirationDates}`)
+    
+    const todayArray = today.split(".").map(item => Number(item))
+    const [tYear, tMonth, tDay] = todayArray;
+    const todayDate = (tYear * 12 + tMonth) *28 + tDay; 
     
     const answer = [];
-    
-    // today를 년 월 일이 들어있는 숫자배열로 바꿈
-    const todayArray = today.split(".").map(item => Number(item));
-    console.log(`todayArray: ${todayArray}`);
-    
-    // 검색용 오브젝트
-    let termsObj = {}; 
-    terms.forEach(item => {
-        //split " " 사이에 빈칸 있음
-    const [term, duration] = item.split(" ");
-    termsObj[term] = Number(duration);
-  });;
-  
-    // 각 string을  년, 월, 일 이들어있는 숫자배열로 바꿈
-    const dateArray = privacies.map(item=>{
-        const [date, term] = item.split(" ");
-        const [year, month, day] = date.split(".").map(unit => Number(unit)) 
-        return [year, month, day, term]
+    expirationDates.forEach((date, index) => {
+        if (todayDate > date){
+            answer.push(index +1);
+        }
     });
     
-    console.log(`dateArray: ${dateArray}`)
-    
-    /*
-    *todayArray랑 dateArray 의 값들을 각각 정수로 변경
-    * (year * 12 + month) * 28
-    * todays > expirationDateArray[i] 이면
-    * answer.push(i + 1)
-    */
-    
-    const expirationDateArray = dateArray.map(item => {
-        let [year, month, day, term] = item;
-        
-        month += termsObj[term];
-        if (month > 12.1) {
-            year += Math.floor(month / 12);
-            month = month % 12;
-        }
-        if (day > 1.01) {
-            day -= 1;            
-        } else if (day === 1 && month > 1.01 ){
-        month -= 1;
-        day = 28;
-        } else if (day === 1 && month === 1) {
-            year -= 1;
-            month = 12;
-            day = 28;
-        }
-        return (((year*12)+ month)*28 + day);
-    });
-    console.log(expirationDateArray);
-    
-    const [tYear, tMonth,tDay] = todayArray;
-    const todays =(tYear * 12 + tMonth) * 28 + tDay;
-    for (let i = 0; i < expirationDateArray.length; i++){
-        if (todays > expirationDateArray[i]){
-        answer.push(i + 1);}
-        
-    }
     return answer;
+    
+    
+    
 }
     
