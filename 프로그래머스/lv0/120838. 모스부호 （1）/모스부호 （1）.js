@@ -6,4 +6,7 @@ const morse = {
     '-.--':'y','--..':'z'
 }
 
-const solution = (letter) => letter.split(" ").map(item => morse[item]).join("");
+// const solution = (letter) => letter.split(" ").map(item => morse[item]).join("");
+
+const solution = (letter) => letter.split(" ").reduce((acc, cur) => acc + morse[cur], "")
+
