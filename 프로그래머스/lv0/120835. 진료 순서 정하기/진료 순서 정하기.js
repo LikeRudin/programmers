@@ -6,7 +6,7 @@
 // }
 
 const solution = (arr) => {
-    const arrOrigin = arr.map(i => i);
+    const arrOrigin = [...arr];
     const sortedArr = arr.sort((a,b) => b - a);
     return arrOrigin.map(item => sortedArr.indexOf(item) + 1);
     
