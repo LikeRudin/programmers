@@ -1,0 +1,1 @@
+const solution = s => [Math.min(...s.split(" ").map(str => Number(str))), Math.max(...s.split(" ").map(str => Number(str)))].join(" ")
