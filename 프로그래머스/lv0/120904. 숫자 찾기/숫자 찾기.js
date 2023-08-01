@@ -1,0 +1,1 @@
+const solution = (num,k) => String(num).match(RegExp(k, 'g'))? String(num).indexOf(String(k)) + 1 : -1
