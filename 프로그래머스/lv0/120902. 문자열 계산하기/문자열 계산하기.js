@@ -4,7 +4,6 @@ const solution = (my_string) => {
     
     for (let i = 0; i < tokenArray.length; i++){
         stack = [...stack, tokenArray[i]];
-        
         if (stack.length === 3){
             const right = stack.pop();
             let sigma = 0;
