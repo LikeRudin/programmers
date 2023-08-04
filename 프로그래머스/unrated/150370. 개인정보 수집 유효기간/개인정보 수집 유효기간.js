@@ -1,3 +1,16 @@
+/* 1. privacies의 계약일을 만료일로 변환
+*    - term을 객체로 변환{[term:key]: string}   
+*    - privacies의 년-월-일을 전부 일 단위로 바꾼다.
+*    - 위에서 바꾼 값에 (term 기간 * 28 - 1) 을더함
+*    - expirationDates 만료일 배열 에 저장
+*   
+*  2. today도 일로 바꿈 => todayDates
+*      expirationDates위를 순회하며 
+*      todayDates와 크기를 비교
+*      todayDates가 더크다 => 만료됨 =>  빈 배열에 인덱스 +1 push
+*  3. 인덱스 +1 값들이 삽입된 배열을 반환
+*/
+
 const solution = (today, term, privacies) => {
     const termsObj = {};
    
@@ -15,6 +28,7 @@ const solution = (today, term, privacies) => {
         return days;
     });
     console.log(`expirationDates: ${expirationDates}`)
+    
     
     const todayArray = today.split(".").map(item => Number(item))
     const [tYear, tMonth, tDay] = todayArray;
