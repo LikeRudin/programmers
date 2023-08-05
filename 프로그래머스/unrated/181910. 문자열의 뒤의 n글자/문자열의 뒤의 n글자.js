@@ -1,0 +1,1 @@
+const solution = (my_string, n) => [...my_string].splice(my_string.length - n, n).join("")
