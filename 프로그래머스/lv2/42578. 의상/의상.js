@@ -3,14 +3,20 @@
 * 3. 1을 뺴준값을 반환한다. (전부다 안입은경우 제외)
 */
 
-const solution = (clothes) => {
-    const hashMap = {};
-    clothes.forEach(item => {
-        hashMap[item[1]] = (hashMap[item[1]])? hashMap[item[1]] + 1 : 1; });
+// const solution = (clothes) => {
+//     const hashMap = {};
+//     clothes.forEach(item => {
+//         hashMap[item[1]] = (hashMap[item[1]])? hashMap[item[1]] + 1 : 1; });
     
-    let answer = 1;
-    for (const key in hashMap) {
-        answer *= (hashMap[key] +1);
-    }
-    return answer -1;
-}
+//     let answer = 1;
+//     for (const key in hashMap) {
+//         answer *= (hashMap[key] +1);
+//     }
+//     return answer -1;
+// }
+
+const solution = (clothes) => Object.values(clothes.reduce((acc, cur) => {
+    const kind = cur[1];
+    acc[kind] = acc[kind]? acc[kind] + 1 : 1;
+    return acc;
+}, {})).reduce((acc, item) => acc * (item + 1), 1) - 1;
