@@ -1,7 +1,13 @@
 /* 1. 현재 위치를 확인한다.
-*  2. N S W E  / N S는 [여기][] / W E 는 [][여기]
-*  3. 
-*  4. 
+*      - row, column
+*  2. 공원 한계선을 계산한다
+*      - vertical, horizontal
+*  3. routes를 순회하며 명령어 수행을 확인한다
+*      - direction / distance
+*      - switch 문으로 NSWE 판별해서 distance값을 현재 [row][column]과 연산한다
+*      [-N + S][-W + E]
+*      - 중간에 X를 만나면 그대로 명령취소
+*      - 문제가 없을경우 현재위치를 수정해준다.
 */
 const solution = (park, routes) => {
     const instructions = routes.map(x => x.split(" ").map((y,i)=> (i===1)? +y:y));
@@ -13,7 +19,7 @@ const solution = (park, routes) => {
     console.log(`vertical: ${vertical}, horizontal: ${horizontal}`);
     return instructions.reduce((acc, cur) => {
         const [direction, distance] = cur;
-        let [row, column] = acc.slice();
+        let [row, column] = acc;
         let move = true
         switch(direction){
             case "N":
