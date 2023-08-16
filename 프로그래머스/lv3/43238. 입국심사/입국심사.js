@@ -17,6 +17,9 @@
 //          -times의 최솟값 * 1
 //     - 최대시간케이스: 모두 가장 시간이 오래걸리는 심사관에게 심사
 //         -times의 최댓값 * 심사인원 수
+        
+//     - 어째서인지 최소시간 케이스를 1로 설정해주어야만 통과가된다.
+//     times[0] - 1 
 // 3. 위에서 구한 left/right 를 기준으로 잡고 정렬된 times를 순회하며
 // 이진 탐색을 실시한다.
 
@@ -35,7 +38,7 @@ const sortArrayForBinarySearch = (times) => {
     return sortedArray;
 }
 const calculateEndpoints = (n,sortedTimes) => {
-    return  [1 ,sortedTimes[sortedTimes.length - 1] * n + 1]
+    return  [ sortedTimes[0] - 1 || 1  ,sortedTimes[sortedTimes.length - 1] * n + 1]
 }
 const searchMinimumCheckTime = (controlArray, endpoints, n) => {
     let [left, right] = endpoints;
@@ -45,12 +48,9 @@ const searchMinimumCheckTime = (controlArray, endpoints, n) => {
         const mid = Math.round((left + right)/2);
         let numCompleted = 0;
         
-        controls.every((checkTime) => {
+        controls.forEach((checkTime) => {
             numCompleted += Math.floor(mid/checkTime)
-            if(numCompleted >= totalNumPeople) {
-                return false
-            }
-            return true
+            
         });
         if (numCompleted >= totalNumPeople){
             right = mid - 1
