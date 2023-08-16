@@ -63,13 +63,17 @@ const findLongestInterval = (intervalList, distance, n) => {
         let numRemovedRocks = 0;
         let currentDistance = 0;
         
-        intervalList.forEach(interval => {
+        intervalList.every(interval => {
             currentDistance += interval;
             if (currentDistance < mid) {
                  numRemovedRocks++;
+                if(numRemovedRocks > idealNumRocksToRemove){
+                    return false
+                }
             } else {
                 currentDistance = 0;
             }
+            return true
         });
         
         if (idealNumRocksToRemove >= numRemovedRocks) {
