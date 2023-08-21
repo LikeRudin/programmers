@@ -12,41 +12,28 @@
 // 배열의 모든 순열을 구한다.
 // 각 순열의 순서대로 순회한다. 
 
-const generatePermutations = (numbers, tmp, answer, usingIndexSet) => {
-    if (tmp.length === numbers.length){
-        answer.add([...tmp])
-        return answer;
+const dfs = (tired, dungeons, visited, count) => {
+    if (tired < 0) {
+        return count; 
     }
-    
-    for (let i = 0; i < numbers.length; i++){
-        if(usingIndexSet.has(i)){
-            continue;
+
+    let answer = count;
+     
+    dungeons.forEach((dungeon, index)=> {
+        const [needed, used] = dungeon;
+        if (
+            !visited.has(index) &&
+            tired >= needed 
+        ) {
+            visited.add(index);
+            answer = Math.max(answer, dfs(tired - used, dungeons, visited, count + 1));
+            visited.delete(index);
         }
-        usingIndexSet.add(i);
-        tmp.push(numbers[i]);
-        generatePermutations(numbers, tmp, answer, usingIndexSet);
-        tmp.pop();
-        usingIndexSet.delete(i);
-    }
-    return answer;
+        
+    })
+    return answer
 }
 
-const solution = (k, dungeons) =>{
-    const indexSet = Object.keys(Array.from(Array(dungeons.length)));
-    const setOfSequence = [...generatePermutations(indexSet, [], new Set(), new Set())]
-    console.log(setOfSequence)
-    const numsForEachCase = setOfSequence
-    .map(order =>
-         order.reduce((acc, curIndex) => {
-            const [needed, used]= dungeons[curIndex];
-            const [stamina, count] = acc;
-            switch(stamina >= needed) {
-                case true: 
-                    return [stamina - used, count + 1]
-                case false:
-                    return acc
-            }
-    }, [k, 0])[1])
-    
-    return Math.max(...numsForEachCase)
+const solution = (k, dungeons) => {
+    return dfs(k,dungeons, new Set(), 0)
 }
