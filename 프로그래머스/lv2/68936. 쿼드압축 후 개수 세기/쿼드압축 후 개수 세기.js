@@ -8,16 +8,12 @@
 
 const checkNeedCompression = (arr)=> {
     const value = arr[0][0]
-    try {
-        arr.forEach(row=> {
-        if(row.length !== row.filter(x => x ===value).length){
-            throw new Error(`need compression`);
-        };
-    });
-    return false
-    } catch (e) {
-        return true
+    for (const row of arr){
+        if (row.length !== row.filter(x => x===value).length) {
+            return true
+        }
     }
+    return false
     
 }
 
