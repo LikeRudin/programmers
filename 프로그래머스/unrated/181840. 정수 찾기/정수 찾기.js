@@ -1,0 +1,1 @@
+const solution = (num_list, n) => Number(num_list.includes(n))
