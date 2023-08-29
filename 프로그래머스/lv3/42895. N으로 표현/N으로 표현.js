@@ -11,7 +11,6 @@ const solution = (N, number) => {
     
     const memo = [...Array(9)].map(x => new Set());
     memo[1].add(N);
-    let answer = -1
     
     for (let i = 2; i < 9; i++){
         memo[i].add(Number(`${N}`.repeat(i)));
@@ -35,6 +34,6 @@ const solution = (N, number) => {
         }
     }
     
-    return answer
+    return -1
     }
     
