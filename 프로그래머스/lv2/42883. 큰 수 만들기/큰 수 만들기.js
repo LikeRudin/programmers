@@ -45,11 +45,14 @@
 
 
 const solution = (number,k) => {
-    let count = k
-    const answerArr = [number[0]];
-    let index = 1;
-    for (index; index < number.length; index++){
-        while (count > 0 && answerArr[answerArr.length -1] < Number(number[index])){
+    let index = 0;
+    let count = k 
+    const answerArr = [number[index]];
+
+    index++;
+    
+    for (index; index < number.length && count >= 0; index++){
+        while (count > 0 && answerArr.length && answerArr[answerArr.length -1] < Number(number[index])){
             answerArr.pop();
             count -= 1;
         }
@@ -57,7 +60,7 @@ const solution = (number,k) => {
         answerArr.push(Number(number[index]));
         
     }
-    while (count > 0){
+    while (count > 0 && answerArr.length){
         answerArr.pop();
         count -= 1;
     }
