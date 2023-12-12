@@ -20,5 +20,5 @@
 
 
 const solution = (babbling) => babbling.reduce((acc,cur)=>
-    /^(aya|ye|woo|ma)+$/.test(cur)? acc +1 : acc
+    /^(?:(aya|ye|woo|ma)(?!.*\1))*$/.test(cur)? acc +1 : acc
 , 0)
