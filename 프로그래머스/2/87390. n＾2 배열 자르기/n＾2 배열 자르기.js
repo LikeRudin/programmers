@@ -8,5 +8,5 @@
 * 둘중 큰 값이 배열의 원소가된다.
 */
 
-const solution = (n, left, right)=> Array.from({ length: right - left + 1 }, (_, i) => Math.max(Math.floor((left + i)/n)+1, (left + i) % n + 1));
+const solution = (n, left, right)=> Array.from({ length: right - left + 1 }, (_, i) => Math.max(Math.floor((left + i)/n), (left + i) % n) + 1) ;
     
