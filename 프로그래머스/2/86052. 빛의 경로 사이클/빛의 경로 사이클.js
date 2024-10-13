@@ -70,6 +70,7 @@
 */
 const solution = (grid) => {
     
+    //qk
     const reflactorMap = {
         "N": {"S":"N", "R": "E", "L": "W"},
         "S": {"S":"S", "R": "W", "L": "E"},
@@ -115,7 +116,7 @@ const solution = (grid) => {
             return
         } 
         pathMemo.add(startingVector);
-        
+    
         let x = xCoords
         let y = yCoords
         let direction = startingDirection
