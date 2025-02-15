@@ -15,4 +15,5 @@ const lines = starNumbers.map(num => {
     return BLANK.repeat(blankNumbers) + STAR.repeat(num)
 });
 
-lines.forEach(line=> {console.log(line)})
+const answer = lines.join('\n')
+console.log(answer)
